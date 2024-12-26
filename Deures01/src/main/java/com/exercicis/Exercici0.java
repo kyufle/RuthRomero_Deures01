@@ -134,8 +134,18 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarFactors"
      */
     public static boolean validarFactors(String[] factors) {
-        // TODO
-        return false;
+        if (factors.length != 2){
+            return false;
+        } else if(factors[0] == null || factors[1] == null){
+            return false;
+        } else if (!factors[0].equalsIgnoreCase("autònom") && !factors[0].equalsIgnoreCase("empresa")){
+            return false;
+        } else if (factors[0].equalsIgnoreCase("autònom") && factors[1].equalsIgnoreCase("risc baix")){
+            return false;
+        } else if (!factors[1].equalsIgnoreCase("risc baix") && !factors[1].equalsIgnoreCase("risc mitjà") && !factors[1].equalsIgnoreCase("risc alt")){
+            return false;
+        }
+        return true;
     }
 
     /**
