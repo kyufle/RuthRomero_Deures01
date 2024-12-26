@@ -191,7 +191,12 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarTipusOperacio"
      */
     public static boolean validarTipusOperacio(String tipus) {
-        // TODO
+        ArrayList<String> operacions = new ArrayList<>(Arrays.asList("Declaració d'impostos","Gestió laboral","Assessoria fiscal","Constitució de societat","Modificació d'escriptures","Testament","Gestió d'herències",
+        "Acta notarial","Contracte de compravenda","Contracte de lloguer"));
+
+        if (operacions.contains(tipus)){
+            return true;
+        }
         return false;
     }
 
