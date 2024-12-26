@@ -164,7 +164,9 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarDescompte"
      */
     public static boolean validarDescompte(double descompte) {
-        // TODO
+        if (descompte>=0 && descompte<=20){
+            return true;
+        }
         return false;
     }
 
