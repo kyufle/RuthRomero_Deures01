@@ -74,8 +74,29 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarNom"
      */
     public static boolean validarNom(String nom) {
-        // TODO
-        return false;
+        ArrayList<String> vocals = new ArrayList<>(Arrays.asList("a","a","e","e","i","i","o","o","u","u"));
+        ArrayList<String> vocalsAccent = new ArrayList<>(Arrays.asList("à","á","è","é","í","ì","ó","ò","ú","ù"));
+        int sumaLletres = 0;
+        if (!(nom.length() >= 2)) /*es fa així per comprovar que el nom té una longitud (es dir, no està buit) i que com a mínim tindrà dues lletres*/{
+            return false; 
+        }
+
+        for (int i = 0; i<vocals.size(); i++){
+            nom.replaceAll(vocalsAccent.get(i), vocals.get(i));
+        }
+
+        for (Character lletra : nom.toCharArray()){
+            if (!Character.isAlphabetic(lletra) && !Character.isSpaceChar(lletra)){
+                return false;    
+            } if (Character.isAlphabetic(lletra)){
+                    sumaLletres += 1;
+            }
+        }
+        if (sumaLletres < 2){
+            return false;
+        }
+        return true;
+        
     }
     
     /**
