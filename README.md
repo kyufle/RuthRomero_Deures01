@@ -18,7 +18,7 @@ cd RuthRomero_Deures00\Deures\Deures01
 
 ## Executar un exercici
 ### Linux/Mac
-Per executar un exercici específic des de la carpeta `Deures00` en Linux/Mac, utilitza la següent comanda:
+Per executar un exercici específic des de la carpeta `Deures01` en Linux/Mac, utilitza la següent comanda:
 
 ```bash
 ./runTest.sh com.exercicis.ExerciciXXXX
