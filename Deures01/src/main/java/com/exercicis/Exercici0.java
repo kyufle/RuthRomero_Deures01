@@ -257,13 +257,13 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testIsAllDigits"
      */
     public static boolean isAllDigits(String str) {
+        if (str.length()<1){
+            return false;
+        }
         for (Character num : str.toCharArray()){
             if (!Character.isDigit(num)){
                 return false;
             }
-        }
-        if (str.length()<1){
-            return false;
         }
         return true;
     }
@@ -290,8 +290,135 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarData"
      */
     public static boolean validarData(String data) {
-        // TODO
-        return false;
+        if (data == null){
+            return false;
+        }
+        if (data.length()!=10){
+            return false;
+        }
+
+        String any = data.substring(0,4);
+        char[] anyCharacter = any.toCharArray();
+        for (Character numAny : anyCharacter){
+            if (!Character.isDigit(numAny)){
+                return false;
+            }
+        }
+        String mes = data.substring(5,7);
+        char[] mesCharacter = mes.toCharArray();
+        for (Character numMes : mesCharacter){
+            if (!Character.isDigit(numMes)){
+                return false;
+            }
+        }
+        
+        String dia = data.substring(8,10);
+        char[] diaCharacter = dia.toCharArray();
+        for (Character numDia : diaCharacter){
+            if (!Character.isDigit(numDia)){
+                return false;
+            }
+        }
+
+        Integer anyBisiesto = Integer.parseInt(any);
+        Integer diaBisiesto = Integer.parseInt(dia);
+
+        boolean esBisiesto = true;
+        
+        if (anyBisiesto%4== 0){
+            if (anyBisiesto%100==0){
+                if (anyBisiesto%400==0){
+                    esBisiesto = true;
+                }else{//no es bisiesto
+                    esBisiesto = false;
+                }
+            }
+            else {
+                esBisiesto = true;
+            }
+            
+        }
+        else { //no es bisiesto
+            esBisiesto = false;
+        }
+
+        System.out.println(data+" "+esBisiesto);
+
+        if (mes.equals("02") && diaBisiesto>29){
+            return false;
+        }
+        
+        if (!(esBisiesto) && mes.equals("02") && diaBisiesto>28){
+            return false;
+        }
+
+        Integer mesNum = Integer.parseInt(mes);
+        if (mesNum < 1 || mesNum>12){
+            return false;
+        }
+        if (diaBisiesto<1){
+            return false;
+        }
+
+        switch (mesNum){
+            case 1: {
+                if (diaBisiesto>31){
+                    return false;
+                }   
+            }
+            case 3: {
+                if (diaBisiesto>31){
+                    return false;
+                }    
+            }
+            case 4: {
+                if (diaBisiesto>30){
+                    return false;
+                }    
+            }
+            case 5: {
+                if (diaBisiesto>31){
+                    return false;
+                }    
+            }
+            case 6: {
+                if (diaBisiesto>30){
+                    return false;
+                }    
+            }
+            case 7: {
+                if (diaBisiesto>31){
+                    return false;
+                }    
+            }
+            case 8: {
+                if (diaBisiesto>31){
+                    return false;
+                }    
+            }
+            case 9: {
+                if (diaBisiesto>30){
+                    return false;
+                }    
+            }
+            case 10: {
+                if (diaBisiesto>31){
+                    return false;
+                }    
+            }
+            case 11: {
+                if (diaBisiesto>30){
+                    return false;
+                }    
+            }
+            case 12: {
+                if (diaBisiesto>31){
+                    return false;
+                }    
+            }
+        }
+        
+        return true;
     }
 
     /**
@@ -311,8 +438,10 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarPreu"
      */
     public static boolean validarPreu(double preu) {
-        // TODO
-        return false;
+        if (preu<=100.0){
+            return false;
+        }
+        return true;
     }
 
     /**
