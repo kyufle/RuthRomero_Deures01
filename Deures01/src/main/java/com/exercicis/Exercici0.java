@@ -500,8 +500,15 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testAfegirClient"
      */
     public static String afegirClient(String nom, int edat, ArrayList<String> factors, double descompte) {
-        // TODO
-        return "";
+        HashMap<String,Object> informacioClientNou = new HashMap<>();
+        informacioClientNou.put("nom", nom);
+        informacioClientNou.put("edat", edat);
+        informacioClientNou.put("factors", factors);
+        informacioClientNou.put("descompte", descompte);
+
+        String clauClient = generaClauClient();
+        clients.put(clauClient,informacioClientNou);
+        return clauClient;
     }
 
     /**
