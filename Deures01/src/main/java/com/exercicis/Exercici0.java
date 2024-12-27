@@ -223,9 +223,33 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarClients"
      */
     public static boolean validarClients(ArrayList<String> clientsLlista, ArrayList<String> clientsGlobals) {
-        // TODO
-        return false;
+        if (clientsLlista == null || clientsGlobals == null){
+            return false;    
+        }
+        if (clientsLlista.size() == 0){
+            return true;
+        }
+  
+        for (String claveClient : clientsLlista){
+            int suma = 0;
+            for (int i = 0; i<clientsLlista.size();i++){
+                if (claveClient.equals(clientsLlista.get(i))){
+                    suma += 1;
+                }
+                if (suma>1){
+                    return false;
+                }
+                if (!clientsGlobals.contains(clientsLlista.get(i))){
+                    return false;
+                }
+            }
+        }
+        
+        
+       
+        return true;
     }
+
 
     /**
      * Comprova si una cadena conté només dígits.
