@@ -587,12 +587,28 @@ public class Exercici0 {
      * 
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlistarClients"
      */
-    public static ArrayList<HashMap<String, HashMap<String, Object>>> llistarClients(
-            ArrayList<String> claus,
-            HashMap<String, Object> condicions) {
+    public static ArrayList<HashMap<String, HashMap<String, Object>>> llistarClients(ArrayList<String> claus, HashMap<String, Object> condicions) {
+        ArrayList<HashMap<String, HashMap<String, Object>>> clientsValids = new ArrayList<>();
 
-        // TODO
-        return null;
+        for (String clau : claus){
+            boolean cumpleCondiciones = true;
+            if (clients.containsKey(clau)){
+                for (String condicioKey : condicions.keySet()){
+                    if (clients.get(clau).containsKey(condicioKey)){
+                        if (!clients.get(clau).get(condicioKey).equals(condicions.get(condicioKey))){
+                            cumpleCondiciones = false;
+                        }
+                    }
+                }
+                if (cumpleCondiciones){
+                    HashMap<String, HashMap<String, Object>> clientDiccionari = new HashMap<>();
+                    clientDiccionari.put(clau,clients.get(clau));
+                    clientsValids.add(clientDiccionari);
+                    return clientsValids;
+                }
+            }
+        }
+        return clientsValids;
     }
 
     /**
