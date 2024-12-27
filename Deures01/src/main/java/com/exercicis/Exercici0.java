@@ -513,10 +513,10 @@ public class Exercici0 {
 
     /**
      * Modifica un camp específic d'un client al diccionari de clients.
-     * - Comprova si la clau del client existeix al diccionari de clients.
+     * - Comprova si la clau del client existeix al diccionari de clients. x
      * - Si existeix, comprova si el camp que es vol modificar és vàlid (existeix
-     * dins del diccionari del client).
-     * - Si el camp existeix, actualitza el valor del camp amb el nou valor.
+     * dins del diccionari del client). x
+     * - Si el camp existeix, actualitza el valor del camp amb el nou valor. x
      * - Si el camp no existeix, retorna un missatge d'error indicant que el camp no
      * existeix.
      * - Si la clau del client no existeix, retorna un missatge d'error indicant que
@@ -536,8 +536,18 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testModificarClient"
      */
     public static String modificarClient(String clauClient, String camp, Object nouValor) {
-        // TODO
-        return "";
+        if (!(clients.containsKey(clauClient))){
+                return "Client \'"+ clauClient +"\'"+" no existeix.";
+        }
+        else{
+            if (clients.get(clauClient).containsKey(camp)){
+                clients.get(clauClient).replace(camp, nouValor);
+                return "OK";
+            }
+            else {
+                return "El camp "+ camp +" no existeix.";
+            }
+        }
     }
 
     /**
