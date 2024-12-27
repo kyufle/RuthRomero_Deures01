@@ -454,8 +454,15 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testGeneraClauClient"
      */
     public static String generaClauClient() {
-        // TODO
-        return "";
+        Random random = new Random();
+        while (true){
+            int numRandom = random.nextInt(100,999);
+            if (!clients.containsKey("client_"+numRandom)){
+                return "client_"+numRandom;
+        }
+    }
+        
+        
     }
 
     /**
