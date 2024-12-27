@@ -244,9 +244,6 @@ public class Exercici0 {
                 }
             }
         }
-        
-        
-       
         return true;
     }
 
@@ -260,8 +257,15 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testIsAllDigits"
      */
     public static boolean isAllDigits(String str) {
-        // TODO
-        return false;
+        for (Character num : str.toCharArray()){
+            if (!Character.isDigit(num)){
+                return false;
+            }
+        }
+        if (str.length()<1){
+            return false;
+        }
+        return true;
     }
 
     /**
