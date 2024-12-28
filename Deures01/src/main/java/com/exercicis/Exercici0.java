@@ -660,15 +660,18 @@ public class Exercici0 {
      * 
      * @test ./runTest.sh "com.exercicis.TestExercici0#testAfegirOperacio"
      */
-    public static String afegirOperacio(
-            String tipus,
-            ArrayList<String> clientsImplicats,
-            String data,
-            String observacions,
-            double preu) {
+    public static String afegirOperacio(String tipus,ArrayList<String> clientsImplicats,String data,String observacions,double preu) {
+        String clauOperacio = generaClauOperacio();
+        HashMap<String,Object> novaOperacio = new HashMap<>();
+        novaOperacio.put("id", clauOperacio);
+        novaOperacio.put("tipus", tipus);
+        novaOperacio.put("clients", clientsImplicats);
+        novaOperacio.put("data", data);
+        novaOperacio.put("observacions", observacions);
+        novaOperacio.put("preu", preu);
 
-        // TODO
-        return "";
+        operacions.add(novaOperacio);
+        return clauOperacio;
     }
 
     /**
@@ -684,8 +687,19 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testModificarOperacio"
      */
     public static String modificarOperacio(String idOperacio, String camp, Object nouValor) {
-        // TODO
-        return "";
+        for (HashMap<String, Object> operacio : operacions){
+            if (operacio.get("id").equals(idOperacio) && operacio.containsKey(camp)){
+                operacio.replace(camp, nouValor);
+                return "OK";
+            }
+            else if (!operacio.get("id").equals(idOperacio)){
+                return "Operació amb id "+idOperacio+" no existeix.";
+            }
+            else if (!operacio.containsKey(camp)){
+                return "El camp descompte no existeix en l'operació.";
+            }
+        }
+        return "No hi ha operacions";
     }
 
     /**
