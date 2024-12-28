@@ -713,8 +713,13 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testEsborrarOperacio"
      */
     public static String esborrarOperacio(String idOperacio) {
-        // TODO
-        return "";
+        for (HashMap<String,Object> operacio : operacions){
+            if (operacio.get("id").equals(idOperacio)){
+                operacions.remove(operacio);
+                return "OK";
+            }
+        }
+        return "Operació amb id "+idOperacio+ " no existeix.";
     }
 
     /**
