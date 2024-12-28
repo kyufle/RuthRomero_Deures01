@@ -735,12 +735,49 @@ public class Exercici0 {
      * 
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlistarOperacions"
      */
-    public static ArrayList<HashMap<String, Object>> llistarOperacions(
-            ArrayList<String> ids,
+    public static ArrayList<HashMap<String, Object>> llistarOperacions(ArrayList<String> ids,
             HashMap<String, Object> condicions) {
+        ArrayList<HashMap<String, Object>> operacionsValides = new ArrayList<>();
+        if (ids.isEmpty()) {
+            for (HashMap<String, Object> operacio : operacions) {
+                boolean totesLesCondicions = true;
+                if (condicions != null){
+                    for (String condicioClau : condicions.keySet()) {
+                        if (!operacio.get(condicioClau).equals(condicions.get(condicioClau))) {
+                            totesLesCondicions = false;
+                        }
+                    }
+                }
+                
+                if (totesLesCondicions){
+                    operacionsValides.add(operacio);
+                }
+            }
+        }
 
-        // TODO
-        return null;
+        else {
+            for (HashMap<String, Object> operacio : operacions) {
+                boolean totesLesCondicions = true;
+                for (String id : ids) {
+                    
+                    if (condicions != null){
+                        for (String condicioClau : condicions.keySet()) {
+                            if (operacio.get("id").equals(id)
+                                    && !operacio.get(condicioClau).equals(condicions.get(condicioClau))) {
+                                        totesLesCondicions = false;
+                                
+                            }
+                        }
+                    }
+              
+                    if (totesLesCondicions && operacio.get("id").equals(id)){
+                        operacionsValides.add(operacio);
+                    }
+                }
+            }
+        }
+
+        return operacionsValides;
     }
 
     /**
