@@ -776,7 +776,6 @@ public class Exercici0 {
                 }
             }
         }
-
         return operacionsValides;
     }
 
@@ -790,8 +789,14 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlistarOperacionsClient"
      */
     public static ArrayList<HashMap<String, Object>> llistarOperacionsClient(String clauClient) {
-        // TODO
-        return null;
+        ArrayList<HashMap<String, Object>> operacionsValides = new ArrayList<>();
+        for (HashMap<String, Object> operacio : operacions){
+            ArrayList<String> clientsEnOperacio = (ArrayList<String>) operacio.get("clients");
+            if (clientsEnOperacio.contains(clauClient)){
+                operacionsValides.add(operacio);
+            }
+        }
+        return operacionsValides;
     }
 
     /**
