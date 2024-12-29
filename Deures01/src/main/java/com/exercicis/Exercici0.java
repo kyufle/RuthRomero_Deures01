@@ -826,8 +826,33 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testAlineaColumnes"
      */
     public static String alineaColumnes(ArrayList<Object[]> columnes) {
-        // TODO
-        return "";
+        String totaltext = "";
+        for (Object[] columna : columnes){
+            String textMostrar = (String) columna[0];
+            String tipusAlineacio = (String) columna[1];
+            int ampladaColumna = (int) columna[2];
+            System.out.println(textMostrar+" "+tipusAlineacio+" "+ampladaColumna);
+            if (textMostrar.length()>ampladaColumna){
+                totaltext += textMostrar.substring(0, ampladaColumna);
+                continue;
+            }
+            if (tipusAlineacio.equals("left")){
+                String alinacio = "%-"+ampladaColumna+"s";
+                totaltext += String.format(alinacio, textMostrar);
+            }
+            else if (tipusAlineacio.equals("right")){
+                String alinacio = "%"+ampladaColumna+"s";
+                totaltext += String.format(alinacio, textMostrar);
+            }
+            else {
+                int totalWidth = ampladaColumna;
+                int paddingEsquerra = (totalWidth-textMostrar.length())/2;
+                int paddingDreta = (totalWidth-textMostrar.length()) - paddingEsquerra;
+                totaltext += String.format("%"+paddingEsquerra+"s%s%"+paddingDreta+"s","",textMostrar,"");
+            }
+        }
+        System.out.println(totaltext);
+        return totaltext;
     }
 
     /**
