@@ -1030,10 +1030,46 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testObtenirOpcio"
      */
     public static String obtenirOpcio(Scanner scanner) {
-        // TODO
-        return "";
-    }
-
+        while (true){
+            System.out.print("Selecciona una opció (número o paraula clau): ");
+            String opcio = scanner.nextLine();
+            switch (opcio.toLowerCase().replace("ó", "o")) {
+                case "0":
+                case "sortir":
+                return "Sortir";
+                case "1":
+                case "afegir client":
+                    return "Afegir client";
+                case "2":
+                case "modificar client":
+                    return "Modificar client";
+                case "3":
+                case "esborrar client":
+                    return "Esborrar client";
+                case "4":
+                case "llistar clients":
+                    return "Llistar clients";
+                case "5":
+                case "afegir operacio":
+                    return "Afegir operació";
+                case "6":
+                case "modificar operacio":
+                    return "Modificar operació";
+                case "7":
+                case "esborrar operacio":
+                    return "Esborrar operació";
+                case "8":
+                case "llistar operacions":
+                    return "Llistar operacions";
+            
+                default:
+                    System.out.println("Opció no vàlida. Torna a intentar-ho.");
+                    break;
+                   
+            }
+        }
+        }
+                
     /**
      * Demana i valida el nom d'un client.
      * Mostra el missatge "Introdueix el nom del client: " i valida que el nom sigui
