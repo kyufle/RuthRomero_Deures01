@@ -1084,8 +1084,17 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirNom"
      */
     public static String llegirNom(Scanner scanner) {
-        // TODO
-        return "";
+        while (true) {
+            System.out.print("Introdueix el nom del client: ");
+            String nom = scanner.nextLine();
+            if (validarNom(nom)) {
+                return nom;
+            }
+            else {
+                System.out.println("Nom no vàlid. Només s'accepten lletres i espais.");
+            }
+        }
+
     }
 
     /**
@@ -1102,8 +1111,17 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirEdat"
      */
     public static int llegirEdat(Scanner scanner) {
-        // TODO
-        return 0;
+        while (true) {
+            System.out.print("Introdueix l'edat del client (18-100): ");
+            String edat = scanner.nextLine();
+            if (isAllDigits(edat)){
+                Integer edatANumero = Integer.parseInt(edat);
+                if (validarEdat(edatANumero)){
+                    return edatANumero;
+                }
+            }
+            System.out.println("Edat no vàlida. Introdueix un número entre 18 i 100.");
+        }
     }
 
     /**
