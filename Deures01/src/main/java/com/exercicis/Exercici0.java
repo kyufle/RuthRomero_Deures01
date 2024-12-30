@@ -907,8 +907,29 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testTaulaOperacionsClient2"
      */
     public static ArrayList<String> taulaOperacionsClient(String clauClient, String ordre) {
-        // TODO
-        return null;
+        ArrayList<String> afegirUsuari = new ArrayList<>();
+        double suma = 0;
+
+        if (clients.containsKey(clauClient)){
+            HashMap<String,Object> agafaClauClient = clients.get(clauClient);
+            afegirUsuari.add(String.format(agafaClauClient.get("nom")+ ", "+agafaClauClient.get("edat") +"%47s",agafaClauClient.get("factors")));
+            afegirUsuari.add("-------------------------------------------------------");
+            afegirUsuari.add(String.format("%-30s%-20s%5s","Tipus", "Data", "Preu"));
+            for (HashMap<String, Object> operacio : operacions){
+                if (((ArrayList<String>)operacio.get("clients")).contains(clauClient)){
+                    afegirUsuari.add(String.format(Locale.US,"%-30s%-19s%5.2f",operacio.get("tipus"),operacio.get("data"),operacio.get("preu")));
+                }
+                suma += (double) operacio.get("preu");
+            }
+            afegirUsuari.add("-------------------------------------------------------");
+            afegirUsuari.add(String.format("%49s%.2f","Suma: ",suma));
+            double preuAmbDescompte = (suma-(((int) agafaClauClient.get("descompte")/100.0)*suma));
+            System.out.println(preuAmbDescompte);
+            afegirUsuari.add(String.format(Locale.US, "Descompte: %s%% %32s: %.2f",agafaClauClient.get("descompte"),"Preu",preuAmbDescompte));
+            afegirUsuari.add(String.format(Locale.US, "Impostos:  21%% (%.2f) %26s%.2f",preuAmbDescompte*0.21,"Total: ",((preuAmbDescompte*0.21)+preuAmbDescompte)));
+
+        }
+        return afegirUsuari;
     }
 
     /**
