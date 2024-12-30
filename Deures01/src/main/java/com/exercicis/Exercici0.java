@@ -995,7 +995,9 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testDibuixarLlista"
      */
     public static void dibuixarLlista(ArrayList<String> llista) {
-        // TODO
+        for (String element : llista){
+            System.out.println(element);
+        }
     }
 
     /**
