@@ -973,8 +973,18 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlistarClientsMenu"
      */
     public static ArrayList<String> getLlistarClientsMenu() {
-        // TODO
-        return null;
+        
+        ArrayList<String> llistarClients = new ArrayList<>(Arrays.asList("=== Llistar Clients ===")); 
+        if (clients.size() <= 0){
+            llistarClients.add("No hi ha clients per mostrar.");
+            return llistarClients;
+        }
+        else{
+            for (String clientsID : clients.keySet()){
+                llistarClients.add(clientsID+": "+clients.get(clientsID).toString());
+            }
+            return llistarClients;
+        }
     }
 
     /**
