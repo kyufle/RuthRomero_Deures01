@@ -1193,8 +1193,20 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirDescompte"
      */
     public static double llegirDescompte(Scanner scanner) {
-        // TODO
-        return 0.0;
+        while (true) {
+            System.out.print("Introdueix el descompte (0-20): ");
+            String descompte = scanner.nextLine();
+            try {
+                Double descompteVerificat = Double.parseDouble(descompte);
+                if (descompteVerificat<0 || descompteVerificat>20){
+                    throw new NumberFormatException();
+                }
+                return descompteVerificat;
+            } catch (NumberFormatException e) {
+                System.out.print("Descompte no vàlid. Ha de ser un número entre 0 i 20.");
+            }
+
+        }
     }
 
     /**
@@ -1227,8 +1239,16 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testAfegirClientMenu"
      */
     public static ArrayList<String> afegirClientMenu(Scanner scanner) {
-        // TODO
-        return null;
+        ArrayList<String> afegirNouUsuari = new ArrayList<>();
+        afegirNouUsuari.add("=== Afegir Client ===");
+        String nom = llegirNom(scanner);
+        Integer edat = llegirEdat(scanner);
+        ArrayList<String> factors = llegirFactors(scanner); 
+        Double descompte = llegirDescompte(scanner);
+        String clientInfo = afegirClient(nom, edat, factors, descompte);
+        afegirNouUsuari.add("S'ha afegit el client amb clau " + clientInfo);
+
+        return afegirNouUsuari;
     }
 
     /**
