@@ -1292,8 +1292,42 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testModificarClientMenu"
      */
     public static ArrayList<String> modificarClientMenu(Scanner scanner) {
-        // TODO
-        return null;
+        ArrayList<String> modificarClients = new ArrayList<>(Arrays.asList("=== Modificar Client ==="));
+        System.out.print("Introdueix la clau del client a modificar (per exemple, 'client_100'): ");
+        String idClient = scanner.nextLine();
+        if (!clients.containsKey(idClient)){
+            modificarClients.add("Client amb clau "+idClient+" no existeix.");
+            return modificarClients;
+        }
+        modificarClients.add("Camps disponibles per modificar: nom, edat, factors, descompte");
+        System.out.print("Introdueix el camp que vols modificar: ");
+        String camp = scanner.nextLine();
+        
+        if (!clients.get(idClient).containsKey(camp)){
+            modificarClients.add("El camp " + camp + " no és vàlid.");
+            return modificarClients;
+        }
+        
+        switch (camp) {
+            case "nom": 
+                modificarClient(idClient, camp, llegirNom(scanner));
+                break; 
+            case "edat":
+                modificarClient(idClient, camp, llegirEdat(scanner));
+                break;
+            case "factors":
+                modificarClient(idClient, camp, llegirFactors(scanner));
+                break;
+            case "descompte":
+                modificarClient(idClient, camp, llegirDescompte(scanner));
+                break;     
+            default:
+                break;
+        }
+        modificarClients.add("S'ha modificat el client " + idClient + ".");
+
+        
+        return modificarClients;
     }
 
     /**
