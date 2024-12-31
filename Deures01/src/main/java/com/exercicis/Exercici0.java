@@ -1352,8 +1352,16 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testEsborrarClientMenu"
      */
     public static ArrayList<String> esborrarClientMenu(Scanner scanner) {
-        // TODO
-        return null;
+        System.out.print("Introdueix la clau del client a esborrar (per exemple, 'client_100'): ");
+        String clauClient = scanner.nextLine();
+        ArrayList<String> esborrarClientLlista = new ArrayList<>(Arrays.asList("=== Esborrar Client ==="));
+        String clientEsborrat = esborrarClient(clauClient);
+        if (clientEsborrat.equals("OK")){
+            esborrarClientLlista.add("S'ha esborrat el client "+clauClient+".");
+            return esborrarClientLlista;
+        }
+        esborrarClientLlista.add(clientEsborrat);
+        return esborrarClientLlista;
     }
 
     /**
