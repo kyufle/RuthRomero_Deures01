@@ -1143,8 +1143,40 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirFactors"
      */
     public static ArrayList<String> llegirFactors(Scanner scanner) {
-        // TODO
-        return null;
+        
+        while (true) {
+            ArrayList<String> factors = new ArrayList<>();
+            System.out.print("Introdueix el primer factor ('autònom' o 'empresa'): ");
+            String primerFactor = scanner.nextLine();
+            factors.add(primerFactor);
+
+            if (primerFactor.toLowerCase().equals("autònom")) {
+                while (true){
+                    System.out.print("Introdueix el segon factor ('risc alt' o 'risc mitjà'): ");
+                    String segonFactor = scanner.nextLine();
+
+                    if (segonFactor.toLowerCase().equals("risc baix") || (!segonFactor.toLowerCase().equals("risc alt") && !segonFactor.toLowerCase().equals("risc mitjà"))) {
+                        System.out.println("Factor no vàlid");
+                        continue;
+                    }
+                    factors.add(segonFactor);
+                    break;
+                }        
+            } else if (primerFactor.toLowerCase().equals("empresa")) {
+                while (true){
+                    System.out.print("Introdueix el segon factor ('risc alt', 'risc baix' o 'risc mitjà': ");
+                    String segonFactor = scanner.nextLine();
+                    if (!segonFactor.toLowerCase().equals("risc alt") && !segonFactor.toLowerCase().equals("risc baix") && !segonFactor.toLowerCase().equals("risc mitjà")){
+                        System.out.println("Factor no vàlid");
+                        continue;
+                    }
+                    factors.add(segonFactor);
+                    break;
+                }
+                
+            }
+            return factors;
+        }
     }
 
     /**
