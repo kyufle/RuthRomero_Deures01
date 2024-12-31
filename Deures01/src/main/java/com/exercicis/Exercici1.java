@@ -87,7 +87,19 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testPrintBoardWithLargeNumbers"
      */
     public static void printBoard() {
-        // TODO
+        String separacio = "+----+----+----+----+";
+        System.out.println(separacio);
+        for (int i = 0; i<SIZE;i++){
+            String linea = "|";
+            for (int j = 0; j<SIZE;j++){
+                linea += String.format("%4s",board[i][j] == 0 ? " " : board[i][j]);
+                linea+= "|";
+                
+            }
+            // System.out.println();
+            System.out.println(linea);
+            System.out.println(separacio);
+        }       
     }
 
     /**
