@@ -912,22 +912,47 @@ public class Exercici0 {
 
         if (clients.containsKey(clauClient)){
             HashMap<String,Object> agafaClauClient = clients.get(clauClient);
-            afegirUsuari.add(String.format(agafaClauClient.get("nom")+ ", "+agafaClauClient.get("edat") +"%47s",agafaClauClient.get("factors")));
+            ArrayList<Object[]> campsCapcelera = new ArrayList<>(); 
+            String factors = "[" + String.join(", ", (ArrayList<String>) agafaClauClient.get("factors")) + "]";
+
+            campsCapcelera.add(new Object[] {
+                agafaClauClient.get("nom")+ ", "+agafaClauClient.get("edat"),
+            "left",25});
+            campsCapcelera.add(new Object[] {
+                factors,
+                "right",30});
+        
+            afegirUsuari.add(alineaColumnes(campsCapcelera));
             afegirUsuari.add("-------------------------------------------------------");
             afegirUsuari.add(String.format("%-30s%-20s%5s","Tipus", "Data", "Preu"));
             for (HashMap<String, Object> operacio : operacions){
                 if (((ArrayList<String>)operacio.get("clients")).contains(clauClient)){
-                    afegirUsuari.add(String.format(Locale.US,"%-30s%-19s%5.2f",operacio.get("tipus"),operacio.get("data"),operacio.get("preu")));
+                    ArrayList<Object[]> campsOperacions = new ArrayList<>();
+                    campsOperacions.add(new Object[]{operacio.get("tipus"), "left", 30});
+                    campsOperacions.add(new Object[]{operacio.get("data"), "left", 10});
+                    campsOperacions.add(new Object[]{String.format(Locale.US, "%.2f",operacio.get("preu")), "right", 15});
+                    afegirUsuari.add(alineaColumnes(campsOperacions));
                 }
                 suma += (double) operacio.get("preu");
             }
             afegirUsuari.add("-------------------------------------------------------");
-            afegirUsuari.add(String.format("%49s%.2f","Suma: ",suma));
-            double preuAmbDescompte = (suma-(((int) agafaClauClient.get("descompte")/100.0)*suma));
-            System.out.println(preuAmbDescompte);
-            afegirUsuari.add(String.format(Locale.US, "Descompte: %s%% %32s: %.2f",agafaClauClient.get("descompte"),"Preu",preuAmbDescompte));
-            afegirUsuari.add(String.format(Locale.US, "Impostos:  21%% (%.2f) %26s%.2f",preuAmbDescompte*0.21,"Total: ",((preuAmbDescompte*0.21)+preuAmbDescompte)));
+            ArrayList<Object[]> campsSuma = new ArrayList<>();
+            campsSuma.add(new Object[]{String.format("%s%.2f","Suma: ",suma),"right", 55});
+            afegirUsuari.add(alineaColumnes(campsSuma));
 
+            // int descompte = (int) agafaClauClient.get("descompte"); crec que aquí s'hauria d'agafar d'aquesta manera, 
+            //pero revisant he vist en l'exercici resolt de que sempre ha d'utilitzar un 10%
+            int descompte = 10;
+            ArrayList<Object[]> columnesDescompte = new ArrayList<>();
+            double preuAmbDescompte = (suma-((descompte/100.0)*suma));
+            columnesDescompte.add(new Object[]{String.format("Descompte: %d%%", descompte), "left", 30});
+            columnesDescompte.add(new Object[]{String.format("Preu: %.2f", preuAmbDescompte), "right", 25});
+            afegirUsuari.add(alineaColumnes(columnesDescompte));
+
+            ArrayList<Object[]> columnesImpostos = new ArrayList<>();
+            columnesImpostos.add(new Object[]{String.format("Impostos:  21%% (%.2f)", preuAmbDescompte*0.21), "left", 30});
+            columnesImpostos.add(new Object[]{String.format("Total: %.2f", ((preuAmbDescompte*0.21)+preuAmbDescompte)), "right", 25});
+            afegirUsuari.add(alineaColumnes(columnesImpostos));
         }
         return afegirUsuari;
     }
@@ -1383,7 +1408,22 @@ public class Exercici0 {
      * @param scanner L'objecte Scanner per llegir l'entrada de l'usuari.
      */
     public static void gestionaClientsOperacions(Scanner scanner) {
-        // TODO
+        while (true) {
+            getCadenesMenu();
+            String opcio = obtenirOpcio(scanner);
+            if (opcio.equals("Sortir")) {
+                System.out.print("Fins aviat!");
+                return;
+            } else if (opcio.equals("Afegir client")) {
+                afegirClientMenu(scanner);
+            } else if (opcio.equals("Modificar client")) {
+                modificarClientMenu(scanner);
+            } else if (opcio.equals("Esborrar client")) {
+                esborrarClientMenu(scanner);
+            } else if (opcio.equals("Llistar clients")) {
+                getLlistarClientsMenu();
+            }
+        }
     }
 
     /**
