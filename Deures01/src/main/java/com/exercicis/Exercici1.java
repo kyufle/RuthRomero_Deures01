@@ -127,7 +127,6 @@ public class Exercici1 {
                 return;
             }
         }
-        
     }
 
     /**
@@ -165,7 +164,45 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testMoveLeftFullRowWithoutMerge"
      */
     public static void moveLeft() {
-        // TODO
+        //aquest mou tot a l'esquerra
+        for (int k = 0; k < SIZE; k++) {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (j == 0){
+                        continue;
+                    }
+                    if (board[i][j-1] == 0){
+                        board[i][j-1] = board[i][j];
+                        board[i][j] = 0;
+                    }
+                }
+            }
+        }
+        // junta els del mateix tipus
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (j == 0){
+                    continue;
+                }
+                if (board[i][j-1] == (board[i][j])){
+                    board[i][j-1] *= 2;
+                    board[i][j] = 0;
+                }
+            }
+        }
+        for (int k = 0; k < SIZE; k++) {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (j == 0){
+                        continue;
+                    }
+                    if (board[i][j-1] == 0){
+                        board[i][j-1] = board[i][j];
+                        board[i][j] = 0;
+                    }
+                }
+            }
+        }
     }
 
     /**
