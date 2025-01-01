@@ -96,7 +96,6 @@ public class Exercici1 {
                 linea+= "|";
                 
             }
-            // System.out.println();
             System.out.println(linea);
             System.out.println(separacio);
         }       
@@ -114,7 +113,21 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testSpawnDoNotOverwriteExisting"
      */
     public static void spawnTile() {
-        // TODO
+        while (true){
+            int fila = random.nextInt(0,4);
+            int casilla = random.nextInt(0,4);
+            if (board[fila][casilla] == 0){
+                int probabilitat = random.nextInt(0,10);
+                if (probabilitat == 0){
+                    board[fila][casilla] = 4;
+                }
+                else {
+                    board[fila][casilla] = 2;
+                }
+                return;
+            }
+        }
+        
     }
 
     /**
